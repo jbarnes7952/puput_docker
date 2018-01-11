@@ -1,5 +1,5 @@
 web:
-  image: puput
+  image: jbarnes/puput
   volumes:
     - ./data/media:/media
   ports:
