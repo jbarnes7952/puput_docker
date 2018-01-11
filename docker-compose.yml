@@ -1,5 +1,5 @@
 web:
-  image: jbarnes/puput
+  image: jbarnes7952/puput_docker
   volumes:
     - ./data/media:/media
   ports:
