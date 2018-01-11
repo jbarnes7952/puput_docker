@@ -1,0 +1,11 @@
+#!/usr/bin/expect
+
+set timeout 20
+
+# spawn "python manage.py makemigrations"
+# spawn "python manage.py"
+spawn ./manage.py makemigrations 
+expect "Select an option:" { send "1\r" }
+expect ">>>" { send "\"\"\r" }
+
+interact

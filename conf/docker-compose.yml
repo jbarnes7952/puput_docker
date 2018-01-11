@@ -1,0 +1,36 @@
+
+pgMaster:
+  restart: always
+  image: sameersbn/postgresql:9.4-11
+  environment:
+    - DEBUG=false
+
+    - DB_USER=dbuser
+    - DB_PASS=dbpassword
+    - DB_NAME=dbname
+
+    - DB_UNACCENT=false
+
+    - REPLICATION_MODE=master
+    - REPLICATION_USER=replicator
+    - REPLICATION_PASS=replpassword
+    - REPLICATION_SSLMODE=
+  ports:
+    - "5432"
+  volumes:
+    - /tmp/docker/postgresql:/var/lib/postgresql
+
+pgSlave:
+  restart: always
+  image: sameersbn/postgresql:9.4-11
+  links:
+    - pgMaster:master
+  environment:
+    - DEBUG=false
+
+    - REPLICATION_MODE=slave
+    - REPLICATION_HOST=master
+    - REPLICATION_USER=replicator
+    - REPLICATION_PASS=replpassword
+  ports:
+    - "5432"

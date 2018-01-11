@@ -1,0 +1,20 @@
+web:
+  image: puput
+  volumes:
+    - ./data/media:/media
+  ports:
+    - "8000:8000"
+  command: python manage.py runserver 0.0.0.0:8000
+  links:
+    - postgres
+
+postgres:
+  container_name:
+    postgres
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    POSTGRES_PASSWORD: mysecretpassword
+
+
