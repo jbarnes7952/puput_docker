@@ -1,9 +1,10 @@
 web:
-  image: puput
+  image: jbarnes/puput
   volumes:
     - ./data/media:/media
   ports:
     - "8000:8000"
+    - "8888:8888"  
   command: python manage.py runserver 0.0.0.0:8000
   links:
     - postgres
