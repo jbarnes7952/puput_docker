@@ -1,21 +1,30 @@
 web:
   image: jbarnes7952/puput_docker
+  container_name: blog_wagtail
   volumes:
+    - ./static:/app/blog/static
     - ./data/media:/media
-  ports:
-    - "8000:8000"
-    - "8888:8888"  
-  command: python manage.py runserver 0.0.0.0:8000
+      #ports:
+      #- "8090:80"
+      #- "8888:8888"  
+      #  command: ./manage.py runserver 0.0.0.0:8000 
+  command: gunicorn blog.wsgi:application -b "0.0.0.0:80"
   links:
     - postgres
 
 postgres:
-  container_name:
-    postgres
+  container_name: blog_postgres
   image: postgres
-  ports:
-    - "5432:5432"
   environment:
     POSTGRES_PASSWORD: mysecretpassword
 
-
+nginx:
+  ports:
+    - "8080:80"
+    - "443:443"  
+  container_name: blog_nginx
+  image: nginx
+  links:
+    - web
+  volumes:
+    - ./static:/static

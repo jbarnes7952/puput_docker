@@ -145,3 +145,5 @@ WAGTAIL_SITE_NAME = "blog"
 BASE_URL = 'http://example.com'
 
 PUPUT_AS_PLUGIN = True
+ALLOWED_HOSTS = "*"
+

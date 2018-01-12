@@ -2,7 +2,7 @@ FROM python:latest
 
 RUN apt-get update && \
 	apt-get install -y vim expect
-RUN pip install wagtail wagtailcodeblock psycopg2 django-el-pagination
+RUN pip install wagtail wagtailcodeblock psycopg2 django-el-pagination gunicorn
 RUN git clone git://github.com/jbarnes7952/puput /puput_src
 WORKDIR /app
 RUN wagtail start blog
@@ -14,3 +14,4 @@ COPY datadump.json /app/blog
 
 WORKDIR /app/blog
 COPY puput-patch/my_migrate.exp /app/blog 
+EXPOSE 80
