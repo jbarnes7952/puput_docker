@@ -3,7 +3,7 @@ web:
   container_name: blog_wagtail
   volumes:
     - ./static:/app/blog/static
-    - ./data/media:/media
+    - ./data/media:/app/blog/media
       #ports:
       #- "8090:80"
       #- "8888:8888"  
@@ -19,12 +19,14 @@ postgres:
     POSTGRES_PASSWORD: mysecretpassword
 
 nginx:
+  build: nginx/
   ports:
     - "8080:80"
     - "443:443"  
   container_name: blog_nginx
-  image: nginx
+  # image: nginx
   links:
     - web
   volumes:
     - ./static:/static
+    - ./data/media:/media  
