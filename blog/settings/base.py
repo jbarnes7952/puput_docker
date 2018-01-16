@@ -26,9 +26,12 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
+    'graphene_django',
     'home',
     'search',
     'puput',
+    'rest_framework',
     'wagtail.contrib.wagtailroutablepage',
     'wagtail.contrib.wagtailsitemaps',
     'wagtailcodeblock',
@@ -147,3 +150,6 @@ BASE_URL = 'http://example.com'
 PUPUT_AS_PLUGIN = True
 ALLOWED_HOSTS = "*"
 
+GRAPHENE = {
+        'SCHEMA': 'api.schema.schema',
+}

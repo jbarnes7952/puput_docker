@@ -4,9 +4,11 @@ web:
   volumes:
     - ./static:/app/blog/static
     - ./data/media:/app/blog/media
-      #ports:
+    - /docker/storage/webfrontend/letsencrypt/www:/var/www/letsencrypt
+    - /docker/storage/webfrontend/letsencrypt/etc:/etc/letsencrypt
+  ports:
       #- "8090:80"
-      #- "8888:8888"  
+    - "8888:8888"  
       #  command: ./manage.py runserver 0.0.0.0:8000 
   command: gunicorn blog.wsgi:application -b "0.0.0.0:80"
   links:
@@ -30,3 +32,9 @@ nginx:
   volumes:
     - ./static:/static
     - ./data/media:/media  
+
+#adminer:
+#    image: adminer
+    #restart: always
+#    ports:
+#      - 8081:8080
