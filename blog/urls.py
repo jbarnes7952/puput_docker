@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^search/$', search_views.search, name='search'),
+    url(r'^_search/$', search_views.search, name='search'),
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #url(r'^rest-api/', include(ui_mgmt_urls)),
 
